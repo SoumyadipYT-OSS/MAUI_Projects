@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculatorApp.MainPage"
+             BackgroundColor="{AppThemeBinding Light=#f7f8fa, Dark=#121212}">
+
+    <Grid Padding="16" RowSpacing="20" RowDefinitions="Auto,*">
+
+        <!-- Calculator Display Section -->
+        <Border Grid.Row="0" 
+                StrokeShape="RoundRectangle 28"
+                HeightRequest="180"
+                Margin="4,24,4,12"
+                StrokeThickness="1"
+                Stroke="{AppThemeBinding Light=#e2e8f0, Dark=#2d3748}">
+            <Border.Shadow>
+                <Shadow Brush="#6b48ff" 
+                        Opacity="0.25" 
+                        Offset="0,6" 
+                        Radius="16" />
+            </Border.Shadow>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{AppThemeBinding Light=#ffffff, Dark=#1a202c}" Offset="0.0" />
+                    <GradientStop Color="{AppThemeBinding Light=#f8fafc, Dark=#1e293b}" Offset="1.0" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <!-- Pixel effect background -->
+                <BoxView Color="Transparent" x:Name="PixelBackground"/>
+
+                <Grid RowDefinitions="Auto,*" Padding="28,20">
+                    <!-- History display -->
+                    <Label x:Name="HistoryDisplay" 
+                           Grid.Row="0"
+                           Text="" 
+                           FontSize="18" 
+                           FontFamily="OpenSans-Regular"
+                           Margin="0,0,0,8"
+                           HorizontalOptions="End" 
+                           TextColor="{AppThemeBinding Light=#64748b, Dark=#94a3b8}"/>
+
+                    <!-- Main display with enhanced styling -->
+                    <Border Grid.Row="1" 
+                            Padding="10,12" 
+                            StrokeThickness="1"
+                            Stroke="{AppThemeBinding Light=#e2e8f0, Dark=#334155}"
+                            StrokeShape="RoundRectangle 20"
+                            VerticalOptions="Fill">
+                        <Border.Background>
+                            <SolidColorBrush Color="{AppThemeBinding Light=#f1f5f9, Dark=#252f3f}" />
+                        </Border.Background>
+
+                        <Label x:Name="DisplayLabel" 
+                               Text="0" 
+                               FontSize="52" 
+                               FontFamily="Courier New"
+                               FontAttributes="Bold" 
+                               HorizontalOptions="End" 
+                               VerticalOptions="Center"
+                               LineBreakMode="NoWrap"
+                               TextColor="{AppThemeBinding Light=#0f172a, Dark=#f8fafc}">
+                            <Label.Shadow>
+                                <Shadow Brush="{AppThemeBinding Light=#6b48ff, Dark=#6b48ff}"
+                                        Offset="0,1"
+                                        Radius="1"
+                                        Opacity="0.2" />
+                            </Label.Shadow>
+                        </Label>
+                    </Border>
+                </Grid>
+
+                <!-- Decorative elements -->
+                <Ellipse Fill="{AppThemeBinding Light=#6b48ff20, Dark=#6b48ff30}" 
+                         WidthRequest="16" HeightRequest="16"
+                         HorizontalOptions="Start" VerticalOptions="Start"
+                         Margin="18,18,0,0" />
+
+                <Ellipse Fill="{AppThemeBinding Light=#22c55e20, Dark=#22c55e30}" 
+                         WidthRequest="10" HeightRequest="10"
+                         HorizontalOptions="Start" VerticalOptions="Start"
+                         Margin="40,26,0,0" />
+            </Grid>
+        </Border>
+
+
+
+
+        <!-- Calculator Buttons Section -->
+        <Grid x:Name="ButtonGrid" 
+              Grid.Row="1" 
+              RowDefinitions="*,*,*,*,*" 
+              ColumnDefinitions="*,*,*,*"
+              RowSpacing="12" 
+              ColumnSpacing="12">
+
+            <!-- Row 1 -->
+            <Button Text="C" Grid.Row="0" Grid.Column="0" 
+                    BackgroundColor="{AppThemeBinding Light=#ff6b6b, Dark=#ff6b6b}" 
+                    TextColor="White"
+                    FontSize="22" 
+                    CornerRadius="18"
+                    FontAttributes="Bold"/>
+
+            <Button Text="±" Grid.Row="0" Grid.Column="1" 
+                    BackgroundColor="{AppThemeBinding Light=#f0f0f0, Dark=#333333}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="22" 
+                    CornerRadius="18"/>
+
+            <Button Text="%" Grid.Row="0" Grid.Column="2" 
+                    BackgroundColor="{AppThemeBinding Light=#f0f0f0, Dark=#333333}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="22" 
+                    CornerRadius="18"/>
+
+            <Button Text="÷" Grid.Row="0" Grid.Column="3" 
+                    BackgroundColor="{AppThemeBinding Light=#6b48ff, Dark=#8b5cf6}" 
+                    TextColor="White"
+                    FontSize="26" 
+                    CornerRadius="18"
+                    FontAttributes="Bold"/>
+
+            <!-- Row 2 -->
+            <Button Text="7" Grid.Row="1" Grid.Column="0" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="8" Grid.Row="1" Grid.Column="1" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="9" Grid.Row="1" Grid.Column="2" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="×" Grid.Row="1" Grid.Column="3" 
+                    BackgroundColor="{AppThemeBinding Light=#6b48ff, Dark=#8b5cf6}" 
+                    TextColor="White"
+                    FontSize="26" 
+                    CornerRadius="18"
+                    FontAttributes="Bold"/>
+
+            <!-- Row 3 -->
+            <Button Text="4" Grid.Row="2" Grid.Column="0" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="5" Grid.Row="2" Grid.Column="1" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="6" Grid.Row="2" Grid.Column="2" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="−" Grid.Row="2" Grid.Column="3" 
+                    BackgroundColor="{AppThemeBinding Light=#6b48ff, Dark=#8b5cf6}" 
+                    TextColor="White"
+                    FontSize="26" 
+                    CornerRadius="18"
+                    FontAttributes="Bold"/>
+
+            <!-- Row 4 -->
+            <Button Text="1" Grid.Row="3" Grid.Column="0" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="2" Grid.Row="3" Grid.Column="1" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="3" Grid.Row="3" Grid.Column="2" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="+" Grid.Row="3" Grid.Column="3" 
+                    BackgroundColor="{AppThemeBinding Light=#6b48ff, Dark=#8b5cf6}" 
+                    TextColor="White"
+                    FontSize="26" 
+                    CornerRadius="18"
+                    FontAttributes="Bold"/>
+
+            <!-- Row 5 -->
+            <Button Text="0" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="." Grid.Row="4" Grid.Column="2" 
+                    BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#262626}" 
+                    TextColor="{AppThemeBinding Light=#1c1c1c, Dark=#ffffff}"
+                    FontSize="24" 
+                    CornerRadius="18"/>
+
+            <Button Text="=" Grid.Row="4" Grid.Column="3" 
+                    BackgroundColor="{AppThemeBinding Light=#22c55e, Dark=#22c55e}" 
+                    TextColor="White"
+                    FontSize="26" 
+                    CornerRadius="18"
+                    FontAttributes="Bold"/>
+        </Grid>
+    </Grid>
+</ContentPage>
