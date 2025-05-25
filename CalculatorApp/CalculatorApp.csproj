@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+
 		<OutputType>Exe</OutputType>
 		<RootNamespace>CalculatorApp</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -13,7 +14,7 @@
 		<ApplicationTitle>CalculatorApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.calculatorapp</ApplicationId>
+		<ApplicationId>com.ftird.calculatorapp</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -47,4 +48,24 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 	</ItemGroup>
 
+
+	<PropertyGroup>
+		<!-- enable trimming and AOT analyzers on all platforms -->
+		<IsAotCompatible>true</IsAotCompatible>
+
+		<!-- select platforms to use with NativeAOT -->
+		<PublishAot Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">true</PublishAot>
+	</PropertyGroup>
+
+
+	<PropertyGroup>
+		<_XamarinSdkTreatWarningsAsErrors>false</_XamarinSdkTreatWarningsAsErrors>
+		<WarningsNotAsErrors>$(WarningsNotAsErrors);NU1503;IL2026</WarningsNotAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<AndroidLinkMode>None</AndroidLinkMode>
+		<PublishTrimmed>true</PublishTrimmed>
+	</PropertyGroup>
+	
 </Project>

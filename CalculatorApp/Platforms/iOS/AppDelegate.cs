@@ -1,10 +1,8 @@
 ﻿using Foundation;
 
-namespace CalculatorApp
-{
+namespace CalculatorApp {
     [Register("AppDelegate")]
-    public class AppDelegate : MauiUIApplicationDelegate
-    {
+    public class AppDelegate : MauiUIApplicationDelegate {
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }
 }
