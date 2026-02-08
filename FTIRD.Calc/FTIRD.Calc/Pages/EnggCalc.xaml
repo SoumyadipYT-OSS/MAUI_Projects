@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FTIRD.Calc.Pages.EnggCalc"
+             Title="EnggCalc">
+
+    <Grid Padding="16" RowSpacing="2" ColumnSpacing="2"
+          RowDefinitions="2*,*,*,*,*,*,*"
+          ColumnDefinitions="*,*,*,*,*">
+
+        <Label x:Name="CurrentCalculation"
+                FontSize="22" FontAttributes="Italic" LineBreakMode="NoWrap" 
+                Grid.ColumnSpan="5" Text="" TextColor="{StaticResource Tertiary}"
+                HorizontalOptions="End" VerticalTextAlignment="Start"
+                Grid.Row="0"/>
+
+        <ScrollView Grid.Row="0" Grid.ColumnSpan="5" 
+                    Orientation="Horizontal" 
+                    HorizontalScrollBarVisibility="Never"
+                    VerticalOptions="End"
+                    Margin="0,0,0,8">
+            <Label x:Name="resultText" 
+                    FontSize="40" FontAttributes="Bold" Text="0"
+                    HorizontalTextAlignment="End" VerticalTextAlignment="End" 
+                    TextColor="DarkOliveGreen" 
+                    LineBreakMode="NoWrap" />
+        </ScrollView>
+
+        <BoxView BackgroundColor="DeepSkyBlue"
+                    HeightRequest="1.4" Grid.Row="0" 
+                    VerticalOptions="End" Grid.ColumnSpan="5"/>
+
+
+        <Button Text="CE" Grid.Row="1" Grid.Column="0" FontSize="Large" 
+                BackgroundColor="IndianRed" Clicked="OnClear"/>
+        <Button Text="⌫" Grid.Row="1" Grid.Column="1" FontSize="Large"
+		        BackgroundColor="DimGrey" Clicked="OnBackspace"/>
+        <Button Text="+/-" Grid.Row="1" Grid.Column="2" FontSize="Large"
+		        BackgroundColor="Chocolate" Clicked="OnToggleSign"/>
+
+        <Button Text="x²" Grid.Row="1" Grid.Column="3" FontSize="Large"
+		        BackgroundColor="MediumSeaGreen" Clicked="OnUnary"/>
+        <Button Text="x³" Grid.Row="1" Grid.Column="4" FontSize="Large"
+		        BackgroundColor="MediumSlateBlue" Clicked="OnUnary"/>
+
+        <Button Text="(" Grid.Row="2" Grid.Column="0" FontSize="Large"
+                BackgroundColor="RosyBrown" Clicked="OnParenthesis" />
+        <Button Text=")" Grid.Row="2" Grid.Column="1" FontSize="Large"
+                BackgroundColor="RosyBrown" Clicked="OnParenthesis" />
+        <Button x:Name="DegButton" Text="Deg" Grid.Row="2" Grid.Column="2" FontSize="Large"
+                BackgroundColor="BurlyWood" Clicked="OnAngleMode" />
+        <Button x:Name="RadButton" Text="Rad" Grid.Row="2" Grid.Column="3" FontSize="Large"
+                BackgroundColor="BurlyWood" Clicked="OnAngleMode" />
+
+        <Button Text="x!" Grid.Row="2" Grid.Column="4" FontSize="Large"
+                BackgroundColor="MediumTurquoise" Clicked="OnUnary" />
+
+
+        <Button Text="7" Grid.Row="3" Grid.Column="0" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="8" Grid.Row="3" Grid.Column="1" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="9" Grid.Row="3" Grid.Column="2" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="/" Grid.Row="3" Grid.Column="3" FontSize="Large" 
+                BackgroundColor="CadetBlue" Clicked="OnSelectOperator" />
+
+
+        <Button Text="4" Grid.Row="4" Grid.Column="0" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="5" Grid.Row="4" Grid.Column="1" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="6" Grid.Row="4" Grid.Column="2" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="*" Grid.Row="4" Grid.Column="3" FontSize="Large" 
+                BackgroundColor="DarkGoldenrod" Clicked="OnSelectOperator" />
+
+
+        <Button Text="1" Grid.Row="5" Grid.Column="0" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="2" Grid.Row="5" Grid.Column="1" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="3" Grid.Row="5" Grid.Column="2" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="-" Grid.Row="5" Grid.Column="3" FontSize="Large" 
+            BackgroundColor="PaleVioletRed" Clicked="OnSelectOperator" />
+
+
+        <Button Text="0" Grid.Row="6" Grid.Column="0" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="." Grid.Row="6" Grid.Column="1" FontSize="Large" 
+                BackgroundColor="FloralWhite" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="00" Grid.Row="6" Grid.Column="2" FontSize="Large" 
+                BackgroundColor="WhiteSmoke" TextColor="DarkGoldenrod" Clicked="OnSelectNumber" />
+        <Button Text="+" Grid.Row="6" Grid.Column="3" FontSize="Large" 
+                BackgroundColor="DarkSeaGreen" Clicked="OnSelectOperator" />
+
+        <Button Text="=" Grid.Row="6" Grid.Column="4" FontSize="Large" 
+                BackgroundColor="SteelBlue" Clicked="OnCalculate" />
+
+
+
+
+
+        <!-- Toggle Button -->
+        <Button x:Name="ToggleSlideButton" Text="f(x)" FontAttributes="Italic"
+                Grid.Row="4" Grid.Column="4" FontSize="30" HeightRequest="200" 
+                BackgroundColor="Green" Clicked="OnToggleSlideClicked" />
+
+        <!-- Collapsible Panel (3 rows x 4 columns) -->
+        <Border x:Name="FunctionPanel"
+                Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"
+                IsVisible="False" Padding="10" WidthRequest="300"
+                Stroke="#334155" StrokeThickness="1" Margin="0,0,30,0"
+                Background="#0F172A" HeightRequest="200"
+                StrokeShape="RoundRectangle 10">
+
+            <ScrollView Orientation="Vertical">
+                <Grid RowSpacing="8"
+                      ColumnSpacing="8"
+                      RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="*,*,*,*">
+
+                <!-- Row 0 -->
+                <Button Text="Sin" Grid.Row="0" Grid.Column="0" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="Cos" Grid.Row="0" Grid.Column="1" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="Tan" Grid.Row="0" Grid.Column="2" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="π"   Grid.Row="0" Grid.Column="3" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+
+                <!-- Row 1 -->
+                <Button Text="Asin" Grid.Row="1" Grid.Column="0" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="Acos" Grid.Row="1" Grid.Column="1" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="Atan" Grid.Row="1" Grid.Column="2" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="e"    Grid.Row="1" Grid.Column="3" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+
+                <!-- Row 2 -->
+                <Button Text="Log"  Grid.Row="2" Grid.Column="0" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="Ln"   Grid.Row="2" Grid.Column="1" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="√"    Grid.Row="2" Grid.Column="2" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="xʸ"   Grid.Row="2" Grid.Column="3" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+
+                <!-- Row 3 -->
+                <Button Text="x²"   Grid.Row="3" Grid.Column="0" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="x³"   Grid.Row="3" Grid.Column="1" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="10ˣ"  Grid.Row="3" Grid.Column="2" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="eˣ"   Grid.Row="3" Grid.Column="3" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+
+                <!-- Row 4 -->
+                <Button Text="|x|"  Grid.Row="4" Grid.Column="0" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="1/x"  Grid.Row="4" Grid.Column="1" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="%"    Grid.Row="4" Grid.Column="2" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                <Button Text="Mod"  Grid.Row="4" Grid.Column="3" FontSize="Small" BackgroundColor="#475569" TextColor="White" CornerRadius="10" Clicked="OnFunction" />
+                </Grid>
+            </ScrollView>
+        </Border>
+
+    </Grid>
+
+</ContentPage>
